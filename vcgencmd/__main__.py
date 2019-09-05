@@ -47,6 +47,9 @@ def main(args):
   __do('Memory Allocation (bytes)',
        vcgencmd.memory_sources(),
        vcgencmd.get_mem)
+  __do('Throttled',
+       [''],
+       vcgencmd.get_throttled)
 
 
 if __name__ == '__main__':

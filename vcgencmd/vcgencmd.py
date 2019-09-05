@@ -59,6 +59,10 @@ def measure_temp():
   return float(output[output.find('=') + 1:].strip().rstrip('\'C'))
 
 
+def get_throttled():
+  output = __lookup('get_throttled', [''], '')
+  return int(output[output.find('=') + 1:].strip(), 0)
+
 __kCodecSrcs = ['h264', 'mpg2', 'wvc1', 'mpg4', 'mjpg', 'wmv9']
 
 def codec_sources():
