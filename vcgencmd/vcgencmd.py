@@ -19,9 +19,9 @@ from __future__ import (absolute_import, division,
 import subprocess
 import sys
 
+from .libgencmd import VcGenCMD
 
-def __do_command(command):
-  return subprocess.check_output(command).decode('utf-8')
+__gencmd = VcGenCMD()
 
 def __lookup(command, src_list, src):
   src = src.lower()
@@ -30,7 +30,9 @@ def __lookup(command, src_list, src):
     raise InvalidArgumentError('{0} must be one of {1}'.format(
         src, src_list))
 
-  return __do_command(['vcgencmd', command, src])
+  cmd_bin = (command + " " + src).encode("utf-8")
+
+  return __gencmd.vc_gencmd(cmd_bin).decode('utf-8')
 
 
 __kFreqSrcs = ['arm', 'core', 'h264', 'isp', 'v3d', 'uart', 'pwm', 'emmc',
